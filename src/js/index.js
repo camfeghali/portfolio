@@ -15,5 +15,4 @@ if(typeof(module.hot) !== 'undefined') {
 
 const root = document.getElementById('root')
 
-
-root.innerHTML = `${App()}`
+App()

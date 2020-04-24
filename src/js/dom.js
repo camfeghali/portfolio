@@ -7,9 +7,10 @@ export const MunkeyReact = (function MunkeyReact () {
         createElement
     }
 
-    function createElement(element) {
+    function createElement(arg1, arg2, arg3) {
         // TODO implement createElement functionality
-        return `<div> ${element} </div>`
+        console.log(arg1, arg2, arg3)
+        return 
     }
 
 
