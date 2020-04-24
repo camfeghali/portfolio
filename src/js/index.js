@@ -1,9 +1,11 @@
-import logMessage from '../js/logger'
 import '../css/style.css'
-// Log message to console
-logMessage('A very warm welcome to Expackaaa!')
+import App from './App'
 
 // Needed for Hot Module Replacement
 if(typeof(module.hot) !== 'undefined') {
   module.hot.accept() // eslint-disable-line no-undef  
 }
+
+let MyApp = App()
+
+MyApp.logMessage()
