@@ -2,7 +2,7 @@
 
 A boilerplate NodeJS app served with ExpressJS and configured with Webpack and Babel.
 
-#Getting started
+#Getting started.
 
 Run `npm i` to install node modules.
 
