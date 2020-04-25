@@ -3,19 +3,17 @@ export const MunkeyReact = (function MunkeyReact () {
     var publicAPI = {}
 
     return publicAPI = {
-        logMessage,
         createElement
     }
 
-    function createElement(arg1, arg2, arg3) {
+    function createElement(type, attributes, ...children) {
         // TODO implement createElement functionality
-        console.log(arg1, arg2, arg3)
-        return 
+
+        return {
+            type,
+            children,
+            props: attributes
+        }
     }
 
-
-    function logMessage() {
-        console.log("Hello World")
-    }
-
-})()
+}())

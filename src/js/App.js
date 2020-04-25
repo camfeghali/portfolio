@@ -10,6 +10,6 @@ export const App = () => {
             <h1>Hello, from element</h1>
         </div>
     )
-    return element;
+    console.log(element)
 }
 
