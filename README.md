@@ -1,6 +1,6 @@
 # express-babel-webpack-boilerplate
 
-A boilerplate NodeJS app served with ExpressJS and configured with Webpack and Babel.
+A ReactJS Clone App.
 
 #Getting started.
 
