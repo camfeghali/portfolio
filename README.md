@@ -1,8 +1,6 @@
-# express-babel-webpack-boilerplate
+# A ReactJS Clone App.
 
-A ReactJS Clone App.
-
-#Getting started.
+Getting started.
 
 Run `npm i` to install node modules.
 
