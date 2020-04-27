@@ -6,13 +6,45 @@ export const MunkeyReact = (function MunkeyReact () {
         createElement
     }
 
+
+    // CreateElement is called for every element in a JSX expression
+    // Ins:
+    // One parent element is either an Object, a boolean, or text, if it's an Object is has a:
+    // 1. type ---------- >>>>>>> html tag
+    // 2. attributes ---- >>>>>>> Object where keys hold html tag attribute vlues (className, alt, etc)
+    // 3. ...children --- >>>>>>> Array of elements [childElement1, childElement2, childElement3, ...]
+    // Behavior:
+    // 1. Create childElements = []
+    // 2. Append to it the children's array passed in as an argument.
+    // 3. Map over it,
+    //    if the child is an Object, add it to the children's array
+    //    else call createElement again with a 
+    //    type = "text" and attributes = { textContent: child }
+    // 4. return an Object { type, children: childElement, props: {children: childElements}, attributes }
+
     function createElement(type, attributes, ...children) {
-        // TODO implement createElement functionality
+
+        const childElements = [].concat(...children).reduce(
+            (acc, child) => {
+                if (child !== null && child !== true && child !== false){
+                    if(child instanceof Object) {
+                        acc.push(child)
+                    }
+                    else {
+                        acc.push(createElement(
+                            "text", {
+                                textContent: child
+                            }
+                        ))
+                    }
+                }
+                return acc
+            }, [])
 
         return {
             type,
-            children,
-            props: attributes
+            children: childElements,
+            props: Object.assign({ children: childElements }, attributes)
         }
     }
 
