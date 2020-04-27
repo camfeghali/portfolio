@@ -3,7 +3,8 @@ export const MunkeyReact = (function MunkeyReact () {
     var publicAPI = {}
 
     return publicAPI = {
-        createElement
+        createElement,
+        render
     }
 
 
@@ -47,5 +48,46 @@ export const MunkeyReact = (function MunkeyReact () {
             props: Object.assign({ children: childElements }, attributes)
         }
     }
+
+    // ******************************************************
+    // ******************************************************
+    // ******************************************************
+
+    function render(vdom, container, oldDom = container.firstChild) {
+        if (!oldDom) {
+            mountElement(vdom, container, oldDom);
+        };
+    };
+
+    function mountElement(vdom, container, oldDom) {
+        return mountSimpleNode(vdom, container, oldDom);
+    };
+
+    function mountSimpleNode(vdom, container, oldDomElement, parentComponent) {
+        let newDomElement = null;
+        const nextSibling = oldDomElement && oldDomElement.nextSibling;
+
+        if (vdom.type === "text") {
+            newDomElement = document.createTextNode(vdom.props.textContent);
+        }
+        else {
+            newDomElement = document.createElement(vdom.type);
+        };
+
+        newDomElement._virtualElement = vdom;
+
+        if (nextSibling) {
+            container.insertBefore(newDomElement, nextSibling);
+        }
+        else {
+            container.appendChild(newDomElement);
+        };
+
+        vdom.children.forEach(function mountChildElement(child) {
+            mountElement(child, newDomElement);
+        });
+    };
+
+
 
 }())

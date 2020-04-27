@@ -2,6 +2,7 @@
 
 import { MunkeyReact } from "./dom";
 
+const root = document.getElementById("root")
 
 export const App = () => {
 
@@ -19,6 +20,7 @@ export const App = () => {
       2,3
     </div>
     )
-    console.log(element)
+
+    MunkeyReact.render(element, root);
 }
 
