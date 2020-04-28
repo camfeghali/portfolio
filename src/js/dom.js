@@ -63,26 +63,38 @@ export const MunkeyReact = (function MunkeyReact () {
         diff (vdom, container, oldDom)
     };
 
+    // Takes in vdom <<<<<<<< --- target dom
+    // Takes in container <<< --- where the vdom will be mounted
+    // Takes in oldDom <<<<<< --- oldDom to be compared against
     function diff (vdom, container, oldDom) {
         let oldVDom = oldDom && oldDom._virtualElement;
 
+        // If there is no oldDom, mount the vdom.
         if (!oldDom) {
             mountElement(vdom, container, oldDom);
         }
+        // If there is a oldDom:
+        // Check if the type of the vdom we're trying to mount is a functional component.
+        // Run diffComponent function.
         else if (typeof vdom.type === "function"){
             diffComponent(vdom, null, container, oldDom);
         }
+        // If it's not a functional component, and the old and target dom have the same type
         else if (oldVDom && oldVDom.type === vdom.type) {
+            // If the oldVDom's type is text
+            // Update the node's text with the target node's text.
             if (oldVDom.type === "text") {
                 updateTextNode(oldDom, vdom, oldVDom);
             }
+            // If it's NOT text.
+            // Run updateDomElement.
             else {
                 updateDomElement(oldDom, vdom, oldVDom);
             }
+
             oldDom.virtualElement = vdom;
 
-            // Recursively diff children
-            // Index by index diffing
+            // Do it for every child
             vdom.children.forEach(function diffChildren(child, i) {
                 diff(child, oldDom, oldDom.childNodes[i]);
             });
@@ -108,6 +120,10 @@ export const MunkeyReact = (function MunkeyReact () {
         }
     }
 
+    // Updates a TextNode's content.
+    // Takes the domElement, a target new virtual element and the old virtual element.
+    // If the new virtual element's textContent is not the same as the old one:
+    // --- > update the domElement's textContent to be newVirtualElement.props.textContent
     function updateTextNode(domElement, newVirtualElement, oldVirtualElement) {
         if (newVirtualElement.props.textContent !== oldVirtualElement.props.textContent) {
             domElement.textContent = newVirtualElement.props.textContent;
@@ -129,7 +145,7 @@ export const MunkeyReact = (function MunkeyReact () {
     }
 
     function mountComponent(vdom, container, oldDomElement) {
-        var nextvDom, component, newDomElement = null;
+        var nextvDom, container, newDomElement = null;
         
         if (isFunctionalComponent(vdom)) {
             console.log(nextvDom)
@@ -144,10 +160,15 @@ export const MunkeyReact = (function MunkeyReact () {
         return newDomElement
     }
 
+    // Takes in a node, checks if the type is a function.
     function isFunction(obj) {
         return obj && 'function' === typeof obj.type;
     }
 
+    // Takes in a node, checks if the type is a function.
+    // Also checks if the function has a proto-link to a render method/
+    // If so, then it is a Stateful component.
+    // If not, then it is a functional component.
     function isFunctionalComponent(vnode) {
         let nodeType = vnode && vnode.type;
         return nodeType && 
@@ -179,7 +200,7 @@ export const MunkeyReact = (function MunkeyReact () {
         };
 
         // On that new dom element, add key _virtualElement
-        // Store in it the vdom
+        // Store in it the vdom.
         newDomElement._virtualElement = vdom;
 
         // Remove old nodes
