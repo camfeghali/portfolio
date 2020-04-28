@@ -5,22 +5,26 @@ import { MunkeyReact } from "./dom";
 const root = document.getElementById("root");
 
 export const App = () => {
-  MunkeyReact.render(<Alert/>, root)
+  MunkeyReact.render(<Alert message="This is my message to you hou houu"/>, root)
 };
 
 class Alert extends MunkeyReact.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "Munkey React !"
+    };
   }
 
   render() {
     return(
       <div className="alert-container">
-        <h2>ALERT TITLE</h2>
+        <h2>{this.state.title}</h2>
         <div>
-          Alert Body
+          {this.props.message}
         </div>
+        <Button framework="Angular"> I <Heart/> React</Button>
+        <button onClick={() => this.setState({title: "Baboon React"})}>Change Title</button>
       </div>
     );
   }
@@ -47,6 +51,7 @@ function Greeting (props) {
         Welcome {props.message}
       </h2>
       <Button framework="Angular"> I <Heart/> React</Button>
+      <ChangeTitleButton framework="Angular"> I <Heart/> React</ChangeTitleButton>
     </div>
   );
 }

@@ -1,14 +1,41 @@
-class Component {
-    constructor(props) {
-        
-    }
-}
+
 
 export const MunkeyReact = (function MunkeyReact () {
 
     var publicAPI = {}
 
-    console.log("what is Component: ", Component)
+    class Component {
+        constructor(props) {
+            this.props = props
+            this.state = {};
+            this.prevState = {};
+        }
+
+        setState(nextState) {
+            if(this.prevState) {
+                this.prevState = this.state
+            }
+            this.state = Object.assign({}, this.state, nextState)
+
+            let dom = this.getDomElement();
+            console.log("dom is: ", dom);
+            let container = dom.parentNode;
+
+            let newvDom = this.render();
+            
+            // Recursive diff
+            diff(newvDom, container, dom);
+        }
+
+        setDomElement(dom) {
+            this._dom = dom;
+        }
+
+        getDomElement() {
+            return this._dom;
+        }
+    }
+
     return publicAPI = {
         createElement,
         render,
@@ -155,7 +182,6 @@ export const MunkeyReact = (function MunkeyReact () {
         var nextvDom, container, newDomElement = null;
         
         if (isFunctionalComponent(vdom)) {
-            console.log(nextvDom)
             nextvDom = buildFunctionalComponent(vdom);
         }
         else {
@@ -171,7 +197,7 @@ export const MunkeyReact = (function MunkeyReact () {
     }
 
     function buildStatefulComponent(virtualElement) {
-        const component = new virtualElement.type();
+        const component = new virtualElement.type(virtualElement.props);
         const nextElement = component.render();
         // Set a reference to be used in comparison
         nextElement.component = component;
@@ -236,6 +262,13 @@ export const MunkeyReact = (function MunkeyReact () {
         else {
             container.appendChild(newDomElement);
         };
+
+        let component = vdom.component;
+
+        if (component) {
+            component.setDomElement(newDomElement);
+        }
+
         // Call mountElement for each child node of the 
         // vdom to go through all the child elements
         vdom.children.forEach(function mountChildElement(child) {
@@ -243,13 +276,11 @@ export const MunkeyReact = (function MunkeyReact () {
         });
     };
 
+
     // This function will be responsible for managing the class and attributes that are rendered
-    // 
     function updateDomElement(domElement, newVirtualElement, oldVirtualElement = {}) {
         const newProps = newVirtualElement.props || {};
         const oldProps = oldVirtualElement.props || {};
-
-        console.log("newVirtualElement: ", newVirtualElement);
 
         Object.keys(newProps).forEach(propName => {
             const newProp = newProps[propName];
