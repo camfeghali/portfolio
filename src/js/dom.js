@@ -69,6 +69,9 @@ export const MunkeyReact = (function MunkeyReact () {
         if (!oldDom) {
             mountElement(vdom, container, oldDom);
         }
+        else if (typeof vdom.type === "function"){
+            diffComponent(vdom, null, container, oldDom);
+        }
         else if (oldVDom && oldVDom.type === vdom.type) {
             if (oldVDom.type === "text") {
                 updateTextNode(oldDom, vdom, oldVDom);
@@ -99,6 +102,12 @@ export const MunkeyReact = (function MunkeyReact () {
         domElement.remove();
     }
 
+    function diffComponent(newVirtualElement, oldComponent, container, domElement){
+        if (!oldComponent) {
+            mountElement(newVirtualElement, container, domElement);
+        }
+    }
+
     function updateTextNode(domElement, newVirtualElement, oldVirtualElement) {
         if (newVirtualElement.props.textContent !== oldVirtualElement.props.textContent) {
             domElement.textContent = newVirtualElement.props.textContent;
@@ -108,19 +117,55 @@ export const MunkeyReact = (function MunkeyReact () {
 
     // Will be responsible for returning a 'Simple' Node, or a functional component.
     function mountElement(vdom, container, oldDom) {
-        return mountSimpleNode(vdom, container, oldDom);
+        if (isFunction(vdom)) {
+            return mountComponent(vdom, container, oldDom);
+        } else {
+            return mountSimpleNode(vdom, container, oldDom);
+        }
     };
+
+    function buildFunctionalComponent(vnode, context) {
+        return vnode.type((vnode.props || {}));
+    }
+
+    function mountComponent(vdom, container, oldDomElement) {
+        var nextvDom, component, newDomElement = null;
+        
+        if (isFunctionalComponent(vdom)) {
+            console.log(nextvDom)
+            nextvDom = buildFunctionalComponent(vdom);
+        }
+        if (isFunction(nextvDom)) {
+            return mountComponent(nextvDom, container, oldDomElement);
+        }
+        else {
+            newDomElement = mountElement(nextvDom, container, oldDomElement);
+        }
+        return newDomElement
+    }
+
+    function isFunction(obj) {
+        return obj && 'function' === typeof obj.type;
+    }
+
+    function isFunctionalComponent(vnode) {
+        let nodeType = vnode && vnode.type;
+        return nodeType && 
+            isFunction(vnode) &&
+            !(nodeType.prototype && nodeType.prototype.render);
+
+    }
 
     // Parameters: 
     // 1. vdom <<<<<<<<<<<<<<<< --- target dom
     // 2. container <<<<<<<<<<< --- node on which to mount, (The first is the <div id='root'></div>)
     // 3. oldDomElement <<<<<<< --- old dom
 
-    function mountSimpleNode(vdom, container, oldDom, parentComponent) {
+    function mountSimpleNode(vdom, container, oldDomElement, parentComponent) {
         // Create a new dom element
         let newDomElement = null;
-        // does the oldDom have a sibling ?
-        const nextSibling = oldDom && oldDom.nextSibling;
+        // does the oldDomElement have a sibling ?
+        const nextSibling = oldDomElement && oldDomElement.nextSibling;
 
         // if target dom type is "text"
         // Create a text node, with the value stored in the dom.props.textContent, which is plain text
@@ -137,7 +182,12 @@ export const MunkeyReact = (function MunkeyReact () {
         // Store in it the vdom
         newDomElement._virtualElement = vdom;
 
-        // If the oldDom has a sibling
+        // Remove old nodes
+        if (oldDomElement) {
+            unmountNode(oldDomElement, parentComponent);
+        }
+
+        // If the oldDomElement has a sibling
         // Insert the newly created domElement before it
 
         if (nextSibling) {
