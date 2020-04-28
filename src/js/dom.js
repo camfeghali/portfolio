@@ -60,10 +60,51 @@ export const MunkeyReact = (function MunkeyReact () {
     // 2. container << --------- node on which to mount, (The first is the <div id='root'></div>)
     // 3. oldDom <<<<< --------- old dom which defaults to the container's first child, which is the structure to compare against
     function render(vdom, container, oldDom = container.firstChild) {
+        diff (vdom, container, oldDom)
+    };
+
+    function diff (vdom, container, oldDom) {
+        let oldVDom = oldDom && oldDom._virtualElement;
+
         if (!oldDom) {
             mountElement(vdom, container, oldDom);
-        };
-    };
+        }
+        else if (oldVDom && oldVDom.type === vdom.type) {
+            if (oldVDom.type === "text") {
+                updateTextNode(oldDom, vdom, oldVDom);
+            }
+            else {
+                updateDomElement(oldDom, vdom, oldVDom);
+            }
+            oldDom.virtualElement = vdom;
+
+            // Recursively diff children
+            // Index by index diffing
+            vdom.children.forEach(function diffChildren(child, i) {
+                diff(child, oldDom, oldDom.childNodes[i]);
+            });
+
+            // Remove old dom nodes
+            let oldNodes = oldDom.childNodes;
+            if(oldNodes.length > vdom.children.length) {
+                for (let i = oldNodes.length - 1; i >= vdom.children.length; i -= 1) {
+                    let nodeToBeRemoved = oldNodes[i];
+                    unmountNode(nodeToBeRemoved, oldDom);
+                }
+            }
+        }
+    }
+
+    function unmountNode (domElement, parentComponent) {
+        domElement.remove();
+    }
+
+    function updateTextNode(domElement, newVirtualElement, oldVirtualElement) {
+        if (newVirtualElement.props.textContent !== oldVirtualElement.props.textContent) {
+            domElement.textContent = newVirtualElement.props.textContent;
+        }
+        domElement.virtualElement = newVirtualElement;
+    }
 
     // Will be responsible for returning a 'Simple' Node, or a functional component.
     function mountElement(vdom, container, oldDom) {
@@ -150,8 +191,8 @@ export const MunkeyReact = (function MunkeyReact () {
             }
         });
         Object.keys(oldProps).forEach(propName => {
-            const newProp = newProps[propNAme];
-            const oldProp = oldProps[propNAme];
+            const newProp = newProps[propName];
+            const oldProp = oldProps[propName];
             if(!newProp) {
                 if (propName.slice(0,2) === "on") {
                     domElement.removeEventListener(propName, oldProp, false);
