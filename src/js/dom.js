@@ -34,6 +34,25 @@ export const MunkeyReact = (function MunkeyReact () {
         getDomElement() {
             return this._dom;
         }
+
+        updateProps(props) {
+            this.props = props;
+        }
+
+        componentWillMount() { };
+        componenDidMount() { };
+        componentWillReceiveProps(nextProps) { };
+
+        shouldComponentUpdate(nextProps, nextState) {
+            return nextProps != this.props || nextState != this.state;
+        }
+
+        componentWillUpdate(nextProps, nextState) { };
+
+        componentDidUpdate(prevProps, prevState) { };
+
+        componentWillMount() { };
+
     }
 
     return publicAPI = {
@@ -102,6 +121,7 @@ export const MunkeyReact = (function MunkeyReact () {
     // Takes in oldDom <<<<<< --- oldDom to be compared against
     function diff (vdom, container, oldDom) {
         let oldVDom = oldDom && oldDom._virtualElement;
+        let oldComponent = oldVDom && oldVDom.component;
 
         // If there is no oldDom, mount the vdom.
         if (!oldDom) {
@@ -111,7 +131,7 @@ export const MunkeyReact = (function MunkeyReact () {
         // Check if the type of the vdom we're trying to mount is a functional component.
         // Run diffComponent function.
         else if (typeof vdom.type === "function"){
-            diffComponent(vdom, null, container, oldDom);
+            diffComponent(vdom, oldComponent, container, oldDom);
         }
         // If it's not a functional component, and the old and target dom have the same type
         else if (oldVDom && oldVDom.type === vdom.type) {
@@ -148,10 +168,41 @@ export const MunkeyReact = (function MunkeyReact () {
         domElement.remove();
     }
 
-    function diffComponent(newVirtualElement, oldComponent, container, domElement){
-        if (!oldComponent) {
+    function updateComponent(newVirtualElement, oldComponent, container, domElement) {
+        oldComponent.componentWillReceiveProps(newVirtualElement.props);
+        if (oldComponent.shouldComponentUpdate(newVirtualElement.props)) {
+            const prevProps = oldComponent.props;
+            
+            // Invoke LifeCycle
+            oldComponent.componentWillUpdate(
+                newVirtualElement.props,
+                oldComponent.state
+            );
+
+            // Update component
+            oldComponent.updateProps(newVirtualElement.props);
+
+            // Call Render
+            // Generate new vdom
+            const nextElement = oldComponent.render();
+            nextElement.component = oldComponent;
+
+            // Recursively diff
+            diff(nextElement, container, domElement, oldComponent)
+        }
+    }
+
+    function diffComponent(newVirtualElement, oldComponent, container, domElement) {
+
+        if (isSameComponentType(oldComponent, newVirtualElement)) {
+            updateComponent(newVirtualElement, oldComponent, container, domElement);
+        } else {
             mountElement(newVirtualElement, container, domElement);
         }
+    }
+
+    function isSameComponentType(oldComponent, newVirtualElement) {
+        return oldComponent && newVirtualElement.type === oldComponent.constructor;
     }
 
     // Updates a TextNode's content.
@@ -274,6 +325,10 @@ export const MunkeyReact = (function MunkeyReact () {
         vdom.children.forEach(function mountChildElement(child) {
             mountElement(child, newDomElement);
         });
+
+        if (vdom.props && vdom.props.ref) {
+            vdom.props.ref(newDomElement);
+        }
     };
 
 
