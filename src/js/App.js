@@ -5,13 +5,25 @@ import { MunkeyReact } from "./dom";
 const root = document.getElementById("root");
 
 export const App = () => {
-  MunkeyReact.render(<Greeting message="Willyboy"/>, root);
-  
-  setTimeout(() => {
-    alert("Re-rendering...");
-    MunkeyReact.render(<Greeting message="Abou l Mich"/>, root)
-  }, 1000)
+  MunkeyReact.render(<Alert/>, root)
+};
 
+class Alert extends MunkeyReact.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  render() {
+    return(
+      <div className="alert-container">
+        <h2>ALERT TITLE</h2>
+        <div>
+          Alert Body
+        </div>
+      </div>
+    );
+  }
 };
 
 function Heart(props) {

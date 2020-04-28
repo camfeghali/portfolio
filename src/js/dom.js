@@ -1,12 +1,19 @@
+class Component {
+    constructor(props) {
+        
+    }
+}
+
 export const MunkeyReact = (function MunkeyReact () {
 
     var publicAPI = {}
 
+    console.log("what is Component: ", Component)
     return publicAPI = {
         createElement,
-        render
+        render,
+        Component
     }
-
 
     // CreateElement is called for every element in a JSX expression
     // Ins:
@@ -151,6 +158,9 @@ export const MunkeyReact = (function MunkeyReact () {
             console.log(nextvDom)
             nextvDom = buildFunctionalComponent(vdom);
         }
+        else {
+            nextvDom = buildStatefulComponent(vdom);
+        }
         if (isFunction(nextvDom)) {
             return mountComponent(nextvDom, container, oldDomElement);
         }
@@ -158,6 +168,14 @@ export const MunkeyReact = (function MunkeyReact () {
             newDomElement = mountElement(nextvDom, container, oldDomElement);
         }
         return newDomElement
+    }
+
+    function buildStatefulComponent(virtualElement) {
+        const component = new virtualElement.type();
+        const nextElement = component.render();
+        // Set a reference to be used in comparison
+        nextElement.component = component;
+        return nextElement;
     }
 
     // Takes in a node, checks if the type is a function.
