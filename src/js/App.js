@@ -34,13 +34,13 @@ class AncestorComponent extends MunkeyReact.Component {
 }
 
 function MunkeyLogo (props) {
-  const style = {color: 'red'}
+  const style = {color: 'rgba(213, 147, 88)'}
   return(
     <div className="content-column">
       <img src={munkeyLogo} className="munkey-logo"></img>
-      <h2 style="color:blue"> Can i style with props ?</h2>
-      <h2 className="test"> Can i style with props ?</h2>
-      <h2 style={style}> Can i style with props ?</h2>
+      <h2 style="color:rgba(60,164,157,1)"> Implements Functional and Stateful component rendering</h2>
+      <h2 className="css-style"> You can start by editing the contents of the App.js file</h2>
+      <h2 style={style}>Happy coding!</h2>
     </div>
   );
 }
