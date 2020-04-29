@@ -2,7 +2,7 @@
 
 export const MunkeyReact = (function MunkeyReact () {
 
- function createElement(type, attributes = {}, ...children) {
+    function createElement(type, attributes = {}, ...children) {
         let childElements = [].concat(...children).reduce(
             (acc, child) => {
                 if (child != null && child !== true && child !== false) {
@@ -35,6 +35,10 @@ export const MunkeyReact = (function MunkeyReact () {
         if (!oldDom) {
             mountElement(vdom, container, oldDom);
         }
+        else if ((vdom.type !== oldvdom.type) && (typeof vdom.type !== "function")) {
+            let newDomElement = createDomElement(vdom);  // todo:
+            oldDom.parentNode.replaceChild(newDomElement, oldDom);
+        }
         else if (typeof vdom.type === "function") {
             diffComponent(vdom, oldComponent, container, oldDom);
         }
@@ -47,23 +51,103 @@ export const MunkeyReact = (function MunkeyReact () {
 
             // Set a reference to updated vdom
             oldDom._virtualElement = vdom;
+    
+            // Let's create a collection of keyed elements
+            let keyedelements = {};
+            for (let i = 0; i < oldDom.childNodes.length; i += 1) {
+                const domElement = oldDom.childNodes[i];
+                const key = domElement._virtualElement.props.key;
 
-            // Recursively diff children..
-            // Doing an index by index diffing (because we don't have keys yet)
-            vdom.children.forEach((child, i) => {
-                diff(child, oldDom, oldDom.childNodes[i]);
-            });
-
-            // Remove old dom nodes
-            let oldNodes = oldDom.childNodes;
-            if (oldNodes.length > vdom.children.length) {
-                for (let i = oldNodes.length - 1; i >= vdom.children.length; i -= 1) {
-                    let nodeToBeRemoved = oldNodes[i];
-                    unmountNode(nodeToBeRemoved, oldDom);
+                if (key) {
+                    keyedelements[key] = {
+                        domElement,
+                        index: i
+                    };
                 }
             }
 
+            // Recursively diff children..
+            // Doing an index by index diffing (because we don't have keys yet)
+            if (Object,keys(keyedElements).length === 0) {
+                vdom.children.forEach((child, i) => {
+                    diff(child, oldDom, oldDom.childNodes[i]);
+                });
+            }
+            else {
+                // Reconciliation based on keys
+                vdom.children.forEach((virtualElement, i) => {
+                    const key = virtualElement.props.key;
+                    if (key) {
+                        const keyedDomElement = keyedElement[key];
+                        if(keyedDomElement) {
+                            // Position the new element based on key and index
+                            if(oldDom.childNodes[i] && !oldDom.childNodes[i].isSameNode(keyedDomElement.domElement)) {
+                                oldDom.insertBefore(keyedDomElement.domElement,
+                                    oldDom.childNode[i]);
+                            }
+                            diff(virtualElement, oldDom, keyedDomElement.domElement);
+                        }
+                        else {
+                            mountElement(virtualElement, oldDom);
+                        }
+                    }
+                })
+            }
+
+
+            // Remove old dom nodes
+            let oldNodes = oldDom.childNodes;
+            if (Object.keys(keyedElements).length === 0) {
+                if (oldNodes.length > vdom.children.length) {
+                    for (let i = oldNodes.length - 1; i >= vdom.children.length; i -= 1) {
+                        let nodeToBeRemoved = oldNodes[i];
+                        unmountNode(nodeToBeRemoved, oldDom);
+                    }
+                }
+            }
+            else {
+                if (oldNodes.length > vdom.children.length) {
+                    for (let i = 0; i < oldDom.childNodes.length; i += 1) {
+                        let oldChild = oldDom.childNodes[i];
+                        let oldKey = oldChild.getAttribute("key");
+
+                        let found = false;
+                        for (let n = 0; n < vdom.children.length; n += 1) {
+                            if (vdom.children[n].props.key == oldKey) {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found) {
+                            unmountNode(oldChild, oldDom);
+                        }
+                    }
+                }
+            }
         }
+    }
+
+    function createDomElement(vdom) {
+        let newDomElement = null;
+        if (vdom.type === "text") {
+            newDomElement = document.createTextNode(vdom.props.textContent);
+        } else {
+            newDomElement = document.createElement(vdom.type);
+            updateDomElement(newDomElement, vdom);
+        }
+
+        newDomElement._virtualElement = vdom;
+        vdom.children.forEach((child) => {
+            newDomElement.appendChild(createDomElement(child));
+        });
+
+        // Set refs
+        if (vdom.props && vdom.props.ref) {
+            vdom.props.ref(newDomElement);
+        }
+
+        return newDomElement;
     }
 
     function diffComponent(newVirtualElement, oldComponent, container, domElement) {
@@ -175,10 +259,31 @@ export const MunkeyReact = (function MunkeyReact () {
             return;
         }
 
+        // If component exist
+        let oldComponent = domElement._virtualElement.component;
+        if (oldComponent) {
+            oldComponent.componentWillUnmount();
+        }
+
+        // Recursive calls agains
+        while (domElement.childNodes.length > 0) {
+            unmountNode(domElement.firstChild);
+        }
+
         if (virtualElement.props && virtualElement.props.ref) {
             virtualElement.props.ref(null);
         }
 
+        // Clear out event handlers
+        Object.keys(virtualElement.props).forEach(propName => {
+            if (propName.slice(0, 2) === "on") {
+                const event = propName.toLowerCase().slice(2);
+                const handler = virtualElement.props[propName];
+                domElement.removeEventListener(event, handler);
+            }
+        });
+
+        domElement.remove();
     }
 
     function updateTextNode(domElement, newVirtualElement, oldVirtualElement) {

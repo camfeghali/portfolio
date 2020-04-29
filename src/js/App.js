@@ -14,7 +14,19 @@ export const App = () => {
   
   // MunkeyReact.render(<Stateful title="Task 1"/>, root)
 
-  MunkeyReact.render(<WishList title="Task 1"/>, root)
+  let newElement = (
+    <div>
+      <p>One</p>
+      <p>Two</p>
+    </div>
+  )
+
+  MunkeyReact.render(newElement, root)
+
+  setTimeout(() => {
+    alert("Rerendering");
+    MunkeyReact.render(<WishList title="Task 1"/>, root)
+  }, 1000)
 
 };
 
