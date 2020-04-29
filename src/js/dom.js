@@ -51,39 +51,40 @@ export const MunkeyReact = (function MunkeyReact () {
 
             // Set a reference to updated vdom
             oldDom._virtualElement = vdom;
-    
-            // Let's create a collection of keyed elements
-            let keyedelements = {};
+
+            // Lets create a collection of keyed elements
+            let keyedElements = {};
             for (let i = 0; i < oldDom.childNodes.length; i += 1) {
                 const domElement = oldDom.childNodes[i];
                 const key = domElement._virtualElement.props.key;
 
                 if (key) {
-                    keyedelements[key] = {
+                    keyedElements[key] = {
                         domElement,
                         index: i
                     };
                 }
+
             }
+
 
             // Recursively diff children..
             // Doing an index by index diffing (because we don't have keys yet)
-            if (Object,keys(keyedElements).length === 0) {
+            if (Object.keys(keyedElements).length === 0) {
                 vdom.children.forEach((child, i) => {
                     diff(child, oldDom, oldDom.childNodes[i]);
                 });
-            }
-            else {
+            } else {
                 // Reconciliation based on keys
                 vdom.children.forEach((virtualElement, i) => {
                     const key = virtualElement.props.key;
                     if (key) {
-                        const keyedDomElement = keyedElement[key];
-                        if(keyedDomElement) {
-                            // Position the new element based on key and index
-                            if(oldDom.childNodes[i] && !oldDom.childNodes[i].isSameNode(keyedDomElement.domElement)) {
+                        const keyedDomElement = keyedElements[key];
+                        if (keyedDomElement) {
+                            // Position the new element correctly based on key/index
+                            if (oldDom.childNodes[i] && !oldDom.childNodes[i].isSameNode(keyedDomElement.domElement)) {
                                 oldDom.insertBefore(keyedDomElement.domElement,
-                                    oldDom.childNode[i]);
+                                    oldDom.childNodes[i]);
                             }
                             diff(virtualElement, oldDom, keyedDomElement.domElement);
                         }
@@ -91,9 +92,8 @@ export const MunkeyReact = (function MunkeyReact () {
                             mountElement(virtualElement, oldDom);
                         }
                     }
-                })
+                });
             }
-
 
             // Remove old dom nodes
             let oldNodes = oldDom.childNodes;
@@ -104,8 +104,7 @@ export const MunkeyReact = (function MunkeyReact () {
                         unmountNode(nodeToBeRemoved, oldDom);
                     }
                 }
-            }
-            else {
+            } else {
                 if (oldNodes.length > vdom.children.length) {
                     for (let i = 0; i < oldDom.childNodes.length; i += 1) {
                         let oldChild = oldDom.childNodes[i];
@@ -122,9 +121,11 @@ export const MunkeyReact = (function MunkeyReact () {
                         if (!found) {
                             unmountNode(oldChild, oldDom);
                         }
+
                     }
                 }
             }
+
         }
     }
 
@@ -354,10 +355,15 @@ export const MunkeyReact = (function MunkeyReact () {
                     // using setAttribute
                     domElement[propName] = newProp;
                 } else if (propName !== "children") {
+
                     // ignore the 'children' prop
                     if (propName === "className") {
                         domElement.setAttribute("class", newProps[propName]);
-                    } else {
+                    } else if (propName === "style" && !newProps[propName].substring) {
+                        let styleText = styleObjToCss(newProps[propName]);
+                        domElement.style = styleText;
+                    }
+                    else {
                         domElement.setAttribute(propName, newProps[propName]);
                     }
                 }
@@ -377,6 +383,31 @@ export const MunkeyReact = (function MunkeyReact () {
                 }
             }
         });
+    }
+
+    function styleObjToCss(styleObj) {
+        // I am not checking for non-dimensional props here
+        // Assuming the correct dimensional values are passed for e.g. 10px etc
+
+        let styleCss = "", sep = ":", term = ";";
+
+        for (let prop in styleObj) {
+            if (styleObj.hasOwnProperty(prop)) {
+                let val = styleObj[prop];
+                styleCss += `${jsToCss(prop)} : ${val} ${term}`;
+            }
+        }
+        console.log("what is styleCss here ?", styleCss)
+
+        return styleCss;
+
+    }
+
+    function jsToCss(s) {
+        // OLd preact code base.
+        let transformedText = s.replace(/([A-Z])/, '-$1').toLowerCase();
+        // borderBottom transform to border-bottom
+        return transformedText;
     }
 
     class Component {
