@@ -21,9 +21,13 @@ class AncestorComponent extends MunkeyReact.Component {
 
   render() {
     return(
-      <div>
-        <h2>{this.props.greetingMessage}</h2>
-        <MunkeyLogo/>
+      <div className="ancestor-wrapper">
+        <div></div>
+        <div className="content-wrapper">
+          <h2 className="headline">{this.props.greetingMessage}</h2>
+          <MunkeyLogo/>
+        </div>
+        <div></div>
       </div>
     );
   }
@@ -32,11 +36,11 @@ class AncestorComponent extends MunkeyReact.Component {
 function MunkeyLogo (props) {
   const style = {color: 'red'}
   return(
-    <div>
+    <div className="content-column">
+      <img src={munkeyLogo} className="munkey-logo"></img>
       <h2 style="color:blue"> Can i style with props ?</h2>
       <h2 className="test"> Can i style with props ?</h2>
       <h2 style={style}> Can i style with props ?</h2>
-      <img src={munkeyLogo}></img>
     </div>
   );
 }

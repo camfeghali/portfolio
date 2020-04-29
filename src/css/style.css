@@ -1,6 +1,39 @@
 body {
   background-color: black;
   color: red;
+  height: 100vh;
+  width: 100vw;
+  margin:0px;
+}
+
+#root {
+
+}
+
+.ancestor-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.headline {
+  text-align: center;
+}
+
+.content-column {
+  display: block;
+  flex-direction: column;
+  text-align: center;
+}
+
+.munkey-logo {
+  width: 75%;
+  height: auto;
 }
 
 .test{
