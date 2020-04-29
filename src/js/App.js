@@ -25,7 +25,7 @@ class AncestorComponent extends MunkeyReact.Component {
         <div></div>
         <div className="content-wrapper">
           <h2 className="headline">{this.props.greetingMessage}</h2>
-          <MunkeyLogo/>
+          <MunkeyLogo file="App.js"/>
         </div>
         <div></div>
       </div>
@@ -39,7 +39,7 @@ function MunkeyLogo (props) {
     <div className="content-column">
       <img src={munkeyLogo} className="munkey-logo"></img>
       <h2 style="color:rgba(60,164,157,1)"> Implements Functional and Stateful component rendering</h2>
-      <h2 className="css-style"> You can start by editing the contents of the App.js file</h2>
+      <h2 className="css-style"> {`You can start by editing the contents of the ${props.file} file`}</h2>
       <h2 style={style}>Happy coding!</h2>
     </div>
   );
