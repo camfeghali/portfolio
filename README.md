@@ -1,4 +1,4 @@
-# My portfolio website App.
+# My portfolio website.
 
 ##### A NodeJS | ReactJS App built using my own ReactJS clone that you can find here: https://github.com/camfeghali/munkey-react.
 
