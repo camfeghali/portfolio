@@ -3,6 +3,7 @@
 import { MunkeyReact } from "./dom";
 import mexicoCamille from "../img/mexico-camille.png";
 import { SocialLinks, FavoriteTech, Heading } from './SocialLinks.js'
+import Accordion from './Accordion.js'
 
 const root = document.getElementById("root");
 
@@ -16,6 +17,9 @@ export const App = () => {
 class AncestorComponent extends MunkeyReact.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      title: "Hello World"
+    }
   }
 
 
@@ -44,32 +48,30 @@ function MunkeyLogo (props) {
       <FavoriteTech />
       <hr/>
       <Heading />
-      <Section />
+      <Accordion>
+        <div label='Alligator Mississippiensis'>
+          <p>
+            <strong>Common Name:</strong> American Alligator
+          </p>
+          <p>
+            <strong>Distribution:</strong> Texas to North Carolina, US
+          </p>
+          <p>
+            <strong>Endangered Status:</strong> Currently Not Endangered
+          </p>
+        </div>
+        <div label='Alligator Sinensis'>
+          <p>
+            <strong>Common Name:</strong> Chinese Alligator
+          </p>
+          <p>
+            <strong>Distribution:</strong> Eastern China
+          </p>
+          <p>
+            <strong>Endangered Status:</strong> Critically Endangered
+          </p>
+        </div>
+      </Accordion>
     </div>
   );
-}
-
-function Section () {
-  var acc = document.getElementsByClassName("accordion");
-  var i;
-
-  for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      } 
-    });
-  }
-  return (
-    <div>
-      <button class="accordion">Section 1</button>
-      <div class="panel">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </div>
-    </div>
-  )
 }
