@@ -1,7 +1,9 @@
 /** @jsx MunkeyReact.createElement */
 
 import { MunkeyReact } from "./dom";
-import munkeyLogo from "../img/munkey-logo.png";
+import mexicoCamille from "../img/mexico-camille.png";
+import { SocialLinks, FavoriteTech, Heading } from './SocialLinks.js'
+import Accordion from './Accordion.js'
 
 const root = document.getElementById("root");
 
@@ -15,7 +17,9 @@ export const App = () => {
 class AncestorComponent extends MunkeyReact.Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    this.state = {
+      title: "Hello World"
+    }
   }
 
 
@@ -24,7 +28,6 @@ class AncestorComponent extends MunkeyReact.Component {
       <div className="ancestor-wrapper">
         <div></div>
         <div className="content-wrapper">
-          <h2 className="headline">{this.props.greetingMessage}</h2>
           <MunkeyLogo file="App.js"/>
         </div>
         <div></div>
@@ -34,13 +37,41 @@ class AncestorComponent extends MunkeyReact.Component {
 }
 
 function MunkeyLogo (props) {
-  const style = {color: 'rgba(213, 147, 88)'}
   return(
     <div className="content-column">
-      <img src={munkeyLogo} className="munkey-logo"></img>
-      <h2 style="color:rgba(60,164,157,1)"> Implements Functional and Stateful component rendering</h2>
-      <h2 className="css-style"> {`You can start by editing the contents of the ${props.file} file`}</h2>
-      <h2 style={style}>Happy coding!</h2>
+      <h2>Thanks for checking out my profile!</h2>
+      <img src={mexicoCamille} className="munkey-logo"></img>
+      <SocialLinks />
+      <h2 style="color:rgba(60,164,157,1)"> Software Engineer @ <a className="honeyco-link">HoneyCO</a> </h2>
+      <h2 className="css-style">This page is built with a <a className="munkey-react-link">ReactJS clone</a> I made.</h2>
+      <hr/>
+      <FavoriteTech />
+      <hr/>
+      <Heading />
+      <Accordion>
+        <div label='Alligator Mississippiensis'>
+          <p>
+            <strong>Common Name:</strong> American Alligator
+          </p>
+          <p>
+            <strong>Distribution:</strong> Texas to North Carolina, US
+          </p>
+          <p>
+            <strong>Endangered Status:</strong> Currently Not Endangered
+          </p>
+        </div>
+        <div label='Alligator Sinensis'>
+          <p>
+            <strong>Common Name:</strong> Chinese Alligator
+          </p>
+          <p>
+            <strong>Distribution:</strong> Eastern China
+          </p>
+          <p>
+            <strong>Endangered Status:</strong> Critically Endangered
+          </p>
+        </div>
+      </Accordion>
     </div>
   );
 }

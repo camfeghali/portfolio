@@ -397,8 +397,6 @@ export const MunkeyReact = (function MunkeyReact () {
                 styleCss += `${jsToCss(prop)} : ${val} ${term}`;
             }
         }
-        console.log("what is styleCss here ?", styleCss)
-
         return styleCss;
 
     }
