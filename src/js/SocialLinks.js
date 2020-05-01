@@ -38,11 +38,12 @@ export function FavoriteTech () {
 
 export function Heading (props) {
     const style = {
-        padding: '1em 0 0 0'
+        margin: '1.5em 0 0 0',
+        color: 'rgb(208,147,83)'
     }
     return(
         <div style={style}>
-            <h2>Professional Projects</h2>
+            <h2>{props.title}</h2>
             <hr className="heading-underline"/>
         </div>
     )

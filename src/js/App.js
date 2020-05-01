@@ -4,6 +4,8 @@ import { MunkeyReact } from "./dom";
 import mexicoCamille from "../img/mexico-camille.png";
 import { SocialLinks, FavoriteTech, Heading } from './SocialLinks.js'
 import Accordion from './Accordion.js'
+import { AccordionElement } from './Accordion.js'
+import { lsaDescription } from './ProjectsDescriptions.js'
 
 const root = document.getElementById("root");
 
@@ -28,7 +30,7 @@ class AncestorComponent extends MunkeyReact.Component {
       <div className="ancestor-wrapper">
         <div></div>
         <div className="content-wrapper">
-          <MunkeyLogo file="App.js"/>
+          <Content file="App.js"/>
         </div>
         <div></div>
       </div>
@@ -36,7 +38,8 @@ class AncestorComponent extends MunkeyReact.Component {
   }
 }
 
-function MunkeyLogo (props) {
+
+function Content (props) {
   return(
     <div className="content-column">
       <h2>Thanks for checking out my profile!</h2>
@@ -47,30 +50,30 @@ function MunkeyLogo (props) {
       <hr/>
       <FavoriteTech />
       <hr/>
-      <Heading />
+      <Heading title="Professional Projects"/>
       <Accordion>
-        <div label='Alligator Mississippiensis'>
-          <p>
-            <strong>Common Name:</strong> American Alligator
-          </p>
-          <p>
-            <strong>Distribution:</strong> Texas to North Carolina, US
-          </p>
-          <p>
-            <strong>Endangered Status:</strong> Currently Not Endangered
-          </p>
-        </div>
-        <div label='Alligator Sinensis'>
-          <p>
-            <strong>Common Name:</strong> Chinese Alligator
-          </p>
-          <p>
-            <strong>Distribution:</strong> Eastern China
-          </p>
-          <p>
-            <strong>Endangered Status:</strong> Critically Endangered
-          </p>
-        </div>
+        <AccordionElement label="Load Shedding Agent 2.0" content={lsaDescription}/>
+        <AccordionElement label="Rona" content={lsaDescription}/>
+        <AccordionElement label="Agritect Designer" content={lsaDescription}/>
+        <AccordionElement label="Cancercare.org" content={lsaDescription}/>
+      </Accordion>
+      <Heading title="Personal Projects"/>
+      <Accordion>
+        <AccordionElement label="MunkeyReact, a ReactJS Clone" content={lsaDescription}/>
+        <AccordionElement label="Synced" content={lsaDescription}/>
+        <AccordionElement label="KetoMe" content={lsaDescription}/>
+        <AccordionElement label="Caravan" content={lsaDescription}/>
+        <AccordionElement label="NodeJS | Babel | Webpack | Express boilerplate" content={lsaDescription}/>
+      </Accordion>
+      <Heading title="Blog Posts"/>
+      <Accordion>
+        <AccordionElement label="JavaScript, my favorite compiled language" content={lsaDescription}/>
+        <AccordionElement label="How Closures lead to Modules in JavaScript" content={lsaDescription}/>
+        <AccordionElement label="Object Oriented Programming and the Prototype Chain in JavaScript." content={lsaDescription}/>
+        <AccordionElement label="JavasScript Promises and the Micro Task Queue." content={lsaDescription}/>
+        <AccordionElement label="Asynchronous JavaScript Explained" content={lsaDescription}/>
+        <AccordionElement label="Step by Step guide to set up a basic full-stack app with Rails and Vanilla Javascript." content={lsaDescription}/>
+        <AccordionElement label="Dynamic method definition with ruby’s .define_method" content={lsaDescription}/>
       </Accordion>
     </div>
   );
