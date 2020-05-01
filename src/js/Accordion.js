@@ -36,19 +36,20 @@ class Accordion extends MunkeyReact.Component {
             state: { openSections },
         } = this;
 
-        console.log('What is this in the render method of Acordion ?', this)
-
         return (
             <div style={{ border: '2px solid #008f68' }}>
-                {children.map(child => (
-                    <AccordionSection
-                        isOpen={!!openSections[child.props.label]}
-                        label={child.props.label}
-                        onClick={onClick}
-                    >
-                        {child.props.children}
-                    </AccordionSection>
-                ))}
+                {children.map(child => {
+                    console.log("child is: ", child)
+                    return (
+                        <AccordionSection
+                            isOpen={!!openSections[child.props.label]}
+                            label={child.props.label}
+                            onClick={onClick}
+                        >
+                            {child.props.content}
+                        </AccordionSection>
+                    )
+                })}
             </div>
         );
     }
@@ -75,6 +76,9 @@ class AccordionSection extends MunkeyReact.Component {
         const {
             props: { isOpen, label },
         } = this;
+
+        console.log("Inside render of AccordionSection")
+        console.log("this.props.children are: ", this.props.children)
 
         return (
             <div
@@ -107,3 +111,18 @@ class AccordionSection extends MunkeyReact.Component {
         )
     }
 }
+
+
+export function AccordionElement (props) {
+
+    return(
+        // <div label={props.label}>
+        //     {props.content}
+        // </div>
+        <div>
+            <h1>
+                Hello
+            </h1>
+        </div>
+    )
+} 

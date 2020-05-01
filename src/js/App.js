@@ -4,6 +4,7 @@ import { MunkeyReact } from "./dom";
 import mexicoCamille from "../img/mexico-camille.png";
 import { SocialLinks, FavoriteTech, Heading } from './SocialLinks.js'
 import Accordion from './Accordion.js'
+import { AccordionElement } from './Accordion.js'
 
 const root = document.getElementById("root");
 
@@ -28,7 +29,7 @@ class AncestorComponent extends MunkeyReact.Component {
       <div className="ancestor-wrapper">
         <div></div>
         <div className="content-wrapper">
-          <MunkeyLogo file="App.js"/>
+          <Content file="App.js"/>
         </div>
         <div></div>
       </div>
@@ -36,7 +37,21 @@ class AncestorComponent extends MunkeyReact.Component {
   }
 }
 
-function MunkeyLogo (props) {
+const element = (
+  <div>
+              <p>
+            <strong>Common Name:</strong> American Alligator
+          </p>
+          <p>
+            <strong>Distribution:</strong> Texas to North Carolina, US
+          </p>
+          <p>
+            <strong>Endangered Status:</strong> Currently Not Endangered
+          </p>
+  </div>
+)
+
+function Content (props) {
   return(
     <div className="content-column">
       <h2>Thanks for checking out my profile!</h2>
@@ -49,28 +64,7 @@ function MunkeyLogo (props) {
       <hr/>
       <Heading />
       <Accordion>
-        <div label='Alligator Mississippiensis'>
-          <p>
-            <strong>Common Name:</strong> American Alligator
-          </p>
-          <p>
-            <strong>Distribution:</strong> Texas to North Carolina, US
-          </p>
-          <p>
-            <strong>Endangered Status:</strong> Currently Not Endangered
-          </p>
-        </div>
-        <div label='Alligator Sinensis'>
-          <p>
-            <strong>Common Name:</strong> Chinese Alligator
-          </p>
-          <p>
-            <strong>Distribution:</strong> Eastern China
-          </p>
-          <p>
-            <strong>Endangered Status:</strong> Critically Endangered
-          </p>
-        </div>
+        <AccordionElement label="Hello world" content={element}/>
       </Accordion>
     </div>
   );
