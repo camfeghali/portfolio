@@ -5,6 +5,7 @@ import mexicoCamille from "../img/mexico-camille.png";
 import { SocialLinks, FavoriteTech, Heading } from './SocialLinks.js'
 import Accordion from './Accordion.js'
 import { AccordionElement } from './Accordion.js'
+import { lsaDescription } from './ProjectsDescriptions.js'
 
 const root = document.getElementById("root");
 
@@ -37,19 +38,6 @@ class AncestorComponent extends MunkeyReact.Component {
   }
 }
 
-const element = (
-  <div>
-              <p>
-            <strong>Common Name:</strong> American Alligator
-          </p>
-          <p>
-            <strong>Distribution:</strong> Texas to North Carolina, US
-          </p>
-          <p>
-            <strong>Endangered Status:</strong> Currently Not Endangered
-          </p>
-  </div>
-)
 
 function Content (props) {
   return(
@@ -62,9 +50,29 @@ function Content (props) {
       <hr/>
       <FavoriteTech />
       <hr/>
-      <Heading />
+      <Heading title="Professional Projects"/>
       <Accordion>
-        <AccordionElement label="Hello world" content={element}/>
+        <AccordionElement label="Load Shedding Agent 2.0" content={lsaDescription}/>
+        <AccordionElement label="Rona" content={lsaDescription}/>
+        <AccordionElement label="Agritect Designer" content={lsaDescription}/>
+        <AccordionElement label="Cancercare.org" content={lsaDescription}/>
+      </Accordion>
+      <Heading title="Personal Projects"/>
+      <Accordion>
+        <AccordionElement label="ReactJS Clone" content={lsaDescription}/>
+        <AccordionElement label="Synced" content={lsaDescription}/>
+        <AccordionElement label="KetoMe" content={lsaDescription}/>
+        <AccordionElement label="Caravan" content={lsaDescription}/>
+      </Accordion>
+      <Heading title="Blog Posts"/>
+      <Accordion>
+        <AccordionElement label="JavaScript, my favorite compiled language" content={lsaDescription}/>
+        <AccordionElement label="How Closures lead to Modules in JavaScript" content={lsaDescription}/>
+        <AccordionElement label="Object Oriented Programming and the Prototype Chain in JavaScript." content={lsaDescription}/>
+        <AccordionElement label="JavasScript Promises and the Micro Task Queue." content={lsaDescription}/>
+        <AccordionElement label="Asynchronous JavaScript Explained" content={lsaDescription}/>
+        <AccordionElement label="Step by Step guide to set up a basic full-stack app with Rails and Vanilla Javascript." content={lsaDescription}/>
+        <AccordionElement label="Dynamic method definition with ruby’s .define_method" content={lsaDescription}/>
       </Accordion>
     </div>
   );

@@ -37,9 +37,8 @@ class Accordion extends MunkeyReact.Component {
         } = this;
 
         return (
-            <div style={{ border: '2px solid #008f68' }}>
+            <div style="margin-top: 1.5em">
                 {children.map(child => {
-                    console.log("child is: ", child)
                     return (
                         <AccordionSection
                             isOpen={!!openSections[child.props.label]}
@@ -77,36 +76,17 @@ class AccordionSection extends MunkeyReact.Component {
             props: { isOpen, label },
         } = this;
 
-        console.log("Inside render of AccordionSection")
-        console.log("this.props.children are: ", this.props.children)
-
         return (
-            <div
-                style={{
-                background: isOpen ? '#fae042' : '#6db65b',
-                border: '1px solid #008f68',
-                padding: '5px 10px',
-                }}
-            >
-            <div onClick={() => {this.onClick()}} style={{ cursor: 'pointer' }}>
-                {label}
-                <div style={{ float: 'right' }}>
-                    {!isOpen && <span>&#9650;</span>}
-                    {isOpen && <span>&#9660;</span>}
+            <div>
+                <div onClick={() => {this.onClick()}} style={{fontSize: '18px',cursor: 'pointer', color: 'rgb(105,105,105)' }}>
+                    {label}
                 </div>
-            </div>
                 {isOpen && (
-                    <div
-                    style={{
-                        background: '#6db65b',
-                        border: '2px solid #008f68',
-                        marginTop: 10,
-                        padding: '10px 20px',
-                    }}
-                    >
+                    <div>
                         {this.props.children}
                     </div>
                 )}
+                <hr className="accordion-underline"/>
             </div>
         )
     }
@@ -116,13 +96,7 @@ class AccordionSection extends MunkeyReact.Component {
 export function AccordionElement (props) {
 
     return(
-        // <div label={props.label}>
-        //     {props.content}
-        // </div>
         <div>
-            <h1>
-                Hello
-            </h1>
         </div>
     )
 } 

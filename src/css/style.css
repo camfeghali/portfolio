@@ -79,3 +79,8 @@ p {
 .heading-underline {
   width: 50%
 }
+
+.accordion-underline {
+  width: 2.5%;
+  color: rgb(105,105,105)
+}
