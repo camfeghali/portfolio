@@ -63,7 +63,8 @@ class AccordionSection extends MunkeyReact.Component {
             children: {},
             isOpen: false,
             label: "" || null,
-            onClick: null
+            onClick: null,
+            isHovered: false
         }
     }
 
@@ -71,14 +72,25 @@ class AccordionSection extends MunkeyReact.Component {
         this.props.onClick(this.props.label)
     }
 
+    onHover () {
+        this.setState({isHovered: true})
+    }
+
+    onBlur () {
+        this.setState({isHovered: false})
+    }
+
     render () {
         const {
             props: { isOpen, label },
+            state
         } = this;
 
+        const isHovered = state.isHovered ? "rgb(169,169,169)" : "rgb(119,136,153)"
+        
         return (
             <div>
-                <div onClick={() => {this.onClick()}} style={{fontSize: '18px',cursor: 'pointer', color: 'rgb(105,105,105)' }}>
+                <div onClick={() => {this.onClick()}} onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onBlur()} style={{color: isHovered, fontSize: '18px',cursor: 'pointer' }}>
                     {label}
                 </div>
                 {isOpen && (

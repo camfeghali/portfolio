@@ -59,10 +59,11 @@ function Content (props) {
       </Accordion>
       <Heading title="Personal Projects"/>
       <Accordion>
-        <AccordionElement label="ReactJS Clone" content={lsaDescription}/>
+        <AccordionElement label="MunkeyReact, a ReactJS Clone" content={lsaDescription}/>
         <AccordionElement label="Synced" content={lsaDescription}/>
         <AccordionElement label="KetoMe" content={lsaDescription}/>
         <AccordionElement label="Caravan" content={lsaDescription}/>
+        <AccordionElement label="NodeJS | Babel | Webpack | Express boilerplate" content={lsaDescription}/>
       </Accordion>
       <Heading title="Blog Posts"/>
       <Accordion>

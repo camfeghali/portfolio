@@ -38,7 +38,8 @@ export function FavoriteTech () {
 
 export function Heading (props) {
     const style = {
-        margin: '1.5em 0 0 0'
+        margin: '1.5em 0 0 0',
+        color: 'rgb(208,147,83)'
     }
     return(
         <div style={style}>
