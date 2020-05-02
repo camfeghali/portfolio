@@ -38,12 +38,13 @@ class Accordion extends MunkeyReact.Component {
 
         return (
             <div style="margin-top: 1.5em">
-                {children.map(child => {
+                {children.map((child, i) => {
                     return (
                         <AccordionSection
                             isOpen={!!openSections[child.props.label]}
                             label={child.props.label}
                             onClick={onClick}
+                            lastChild={i == children.length - 1}
                         >
                             {child.props.content}
                         </AccordionSection>
@@ -82,14 +83,14 @@ class AccordionSection extends MunkeyReact.Component {
 
     render () {
         const {
-            props: { isOpen, label },
+            props: { isOpen, label, lastChild },
             state
         } = this;
 
         const isHovered = state.isHovered ? "rgb(169,169,169)" : "rgb(119,136,153)"
         
         return (
-            <div>
+            <div style="margin: 1em 0 1em 0">
                 <div onClick={() => {this.onClick()}} onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onBlur()} style={{color: isHovered, fontSize: '18px',cursor: 'pointer' }}>
                     {label}
                 </div>
@@ -98,7 +99,7 @@ class AccordionSection extends MunkeyReact.Component {
                         {this.props.children}
                     </div>
                 )}
-                <hr className="accordion-underline"/>
+                { !lastChild && <hr className="accordion-underline"/>}
             </div>
         )
     }
