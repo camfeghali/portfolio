@@ -75,6 +75,7 @@ function Content (props) {
         <AccordionElement label="Step by Step guide to set up a basic full-stack app with Rails and Vanilla Javascript." content={lsaDescription}/>
         <AccordionElement label="Dynamic method definition with ruby’s .define_method" content={lsaDescription}/>
       </Accordion>
+      <div className="footer"></div>
     </div>
   );
 }

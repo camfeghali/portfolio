@@ -2,11 +2,20 @@
 body {
   background-color: rgb(247, 245, 245);
   color: rgb(119,136,153);
-  height: 100vh;
   width: 100vw;
   margin:0px;
+  overflow: hidden;
+  height: 100%; 
+  max-height: 100%; 
   font-family: 'Fjalla One', sans-serif;
   font-size: 22px;
+}
+
+.footer{
+  top: auto;
+  bottom: 0; 
+  height: 110px; /*Height of bottom frame div*/
+  overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
 a {
@@ -35,6 +44,12 @@ a.munkey-react-link:hover {
 .ancestor-wrapper {
   display: grid;
   grid-template-columns: auto auto auto;
+  position: fixed; 
+  top: 1px;
+  margin-left:auto;
+  margin-right: auto;
+  bottom: 500px;
+  overflow: auto; 
 }
 
 .content-wrapper {
