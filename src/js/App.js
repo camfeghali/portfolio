@@ -5,7 +5,13 @@ import mexicoCamille from "../img/mexico-camille.png";
 import { SocialLinks, FavoriteTech, Heading } from './SocialLinks.js'
 import Accordion from './Accordion.js'
 import { AccordionElement } from './Accordion.js'
-import { lsaDescription } from './ProjectsDescriptions.js'
+import { 
+  lsaDescription,
+  munkeyReactDescription,
+  ronaDescription,
+  agritectureDesignerDescription,
+  cancercareDescription
+} from './ProjectsDescriptions.js'
 
 const root = document.getElementById("root");
 
@@ -53,13 +59,13 @@ function Content (props) {
       <Heading title="Professional Projects"/>
       <Accordion>
         <AccordionElement label="Load Shedding Agent 2.0" content={lsaDescription}/>
-        <AccordionElement label="Rona" content={lsaDescription}/>
-        <AccordionElement label="Agritect Designer" content={lsaDescription}/>
-        <AccordionElement label="Cancercare.org" content={lsaDescription}/>
+        <AccordionElement label="Rona" content={ronaDescription}/>
+        <AccordionElement label="Agritect Designer" content={agritectureDesignerDescription}/>
+        <AccordionElement label="Cancercare.org" content={cancercareDescription}/>
       </Accordion>
       <Heading title="Personal Projects"/>
       <Accordion>
-        <AccordionElement label="MunkeyReact, a ReactJS Clone" content={lsaDescription}/>
+        <AccordionElement label="MunkeyReact, a ReactJS Clone" content={munkeyReactDescription}/>
         <AccordionElement label="Synced" content={lsaDescription}/>
         <AccordionElement label="KetoMe" content={lsaDescription}/>
         <AccordionElement label="Caravan" content={lsaDescription}/>

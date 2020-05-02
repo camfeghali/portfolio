@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,500;1,400&display=swap');
 body {
   background-color: rgb(247, 245, 245);
   color: rgb(119,136,153);
@@ -14,8 +16,9 @@ body {
 .footer{
   top: auto;
   bottom: 0; 
-  height: 110px; /*Height of bottom frame div*/
+  height: 110px; /* Height of bottom frame div */
   overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+  background: blue;
 }
 
 a {
@@ -48,7 +51,7 @@ a.munkey-react-link:hover {
   top: 1px;
   margin-left:auto;
   margin-right: auto;
-  bottom: 500px;
+  bottom: 1px;
   overflow: auto; 
 }
 
@@ -98,4 +101,16 @@ p {
 .accordion-underline {
   width: 2.5%;
   color: rgb(105,105,105)
+}
+
+.project-description-wrapper {
+  font-family: 'Jost', sans-serif;
+  text-align: left;
+  color: rgb(48,48,48);
+  word-spacing: 1px;
+  margin: 0 1em 0 1em;
+}
+
+li {
+  list-style-type: none;
 }
