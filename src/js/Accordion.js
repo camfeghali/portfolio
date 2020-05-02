@@ -90,7 +90,7 @@ class AccordionSection extends MunkeyReact.Component {
         const isHovered = state.isHovered ? "rgb(169,169,169)" : "rgb(119,136,153)"
         
         return (
-            <div style="margin: 1em 0 1em 0">
+            <div style="margin: 1.5em 1em 1em 1em">
                 <div onClick={() => {this.onClick()}} onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onBlur()} style={{color: isHovered, fontSize: '18px',cursor: 'pointer' }}>
                     {label}
                 </div>
