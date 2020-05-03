@@ -8,7 +8,7 @@ export const munkeyReactDescription = (
             MunkeyReact was built following the guidance of Rajesh Pillai's 
             course on Udemy, <a href="https://www.udemy.com/course/javascript-deep-dive-code-your-own-react-library/"><i>'
             JavaScript Master Class - Build your own React from scratch'</i></a>. A challenging yet rewarding endeavor that helped demistify 
-            React Magic and understand its main building blocks; the VDOM, createElement and Diffing.
+            React Magic and understand its main building blocks; the VDOM, createElement and Diffing. <a href="https://github.com/camfeghali/munkey-react"><u>Repo</u></a>.
         </p>
     </div>
 )
@@ -66,6 +66,58 @@ export const cancercareDescription = (
                     - Integrating argon2 hashing algorithm and refactor user authentication flow for secure user password storage.
                 </li>
             </ol>
+        </p>
+    </div>
+)
+
+export const syncedDescription = (
+    <div className="project-description-wrapper">
+        <p>
+            <u>Repo</u>: <a href="https://github.com/camfeghali/synced-frontend"> <u>Frontend</u> </a> | <a href="https://github.com/camfeghali/synced-backend"> <u>Backend</u> </a><br/>
+            Synced is a fullstack web application built with Ruby on Rails and ReactJS. 
+            The purpose of this app is to synchronize music so users can listen to songs 
+            at the same time regardless of their location. It is my final project as part of 
+            Flatiron School's Software Engineering Bootcamp.
+        </p>
+    </div>
+)
+
+export const ketoMeDescription = (
+    <div className="project-description-wrapper">
+        <p>
+            <u>Repo</u>: <a href="https://github.com/camfeghali/synced-frontend"> <u>Frontend</u> </a> | <a href="https://github.com/camfeghali/synced-backend"> <u>Backend</u> </a><br/>
+            KetoMe is a fullstack web application built with Ruby on Rails during my time at the Flatiron School. 
+            KetoMe integrates the Edamam API, and allows users to look for recipes,
+            and keep track of their nutritional intake to monitor their performance as 
+            it pertains to the keto diet, more on the diet <a href="https://www.healthline.com/nutrition/ketogenic-diet-101"><u>here</u>.</a>
+        </p>
+    </div>
+)
+
+export const nodeBoilerplateDescription = (
+    <div className="project-description-wrapper">
+        <p>
+            <u>Repo</u> <a href="https://github.com/camfeghali/express-babel-webpack-boilerplate"></a><br/>
+            I went through the process of configuring a NodeJS, Webpack, Babel app served via Express. 
+            I used it as the foundation for the React Clone. Going through that set up helped demistify Webpack and Node / Express setup, something that had always been done for me by my peers ❤.
+            Now I can actually debug a Webpack config !
+        </p>
+    </div>
+)
+
+// *******************************************************************
+// *******************************************************************
+// ********************** Blog Posts *********************************
+// *******************************************************************
+// *******************************************************************
+
+export const compiledJavaScript = (
+    <div className="project-description-wrapper">
+        <p>
+        <u>Repo</u>: <a href="https://github.com/camfeghali/caravan-frontend"> <u>Frontend</u> </a> | <a href="https://github.com/camfeghali/caravan-backend"> <u>Backend</u> </a><br/>
+            Another student project, Caravan is a fullstack web application built with Ruby on Rails and ReactJS. It is a E-commerce platform 
+            that allows users to buy & sell second hand goods close to them. 
+            It integrates the Leaflet library and the Mapquest API to show users where items are being sold.
         </p>
     </div>
 )
