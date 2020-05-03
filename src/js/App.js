@@ -2,7 +2,7 @@
 
 import { MunkeyReact } from "./dom";
 import mexicoCamille from "../img/mexico-camille.png";
-import { SocialLinks, FavoriteTech, Heading, BlogPost } from './SocialLinks.js'
+import { SocialLinks, FavoriteTech, Heading, BlogPost, Footer } from './FunctionalComps.js'
 import Accordion from './Accordion.js'
 import { AccordionElement } from './Accordion.js'
 import { 
@@ -83,7 +83,7 @@ function Content (props) {
       <BlogPost title="Asynchronous JavaScript Explained" link="https://medium.com/javascript-in-plain-english/asynchronous-javascript-explained-a4c1133f5544"/>
       <BlogPost title="Step by Step guide to set up a basic full-stack app with Rails and Vanilla Javascript." link="https://medium.com/@camfeg/step-by-step-guide-to-set-up-a-basic-full-stack-app-with-rails-and-vanilla-javascript-12ae33ff0c64"/>
       <BlogPost title="Dynamic method definition with ruby’s .define_method" link="https://medium.com/@camfeg/dynamic-method-definition-with-rubys-define-method-b3ffbbee8197?source=your_stories_page---------------------------"/>
-      <div className="footer"></div>
+      <Footer />
     </div>
   );
 }

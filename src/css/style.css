@@ -15,10 +15,10 @@ body {
 
 .footer{
   top: auto;
-  bottom: 0; 
-  height: 110px; /* Height of bottom frame div */
+  bottom: 0;
+  margin: 4em 0 0 0;
+  height: 150px; /* Height of bottom frame div */
   overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-  background: blue;
 }
 
 a {

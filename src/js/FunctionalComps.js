@@ -63,3 +63,11 @@ export function BlogPost (props) {
     </div>
     )
 }
+
+export function Footer () {
+    return (
+        <div className="footer">
+            <h2>Made with &nbsp; <span style="color: red"> &hearts; </span></h2> 
+        </div>
+    )
+}
