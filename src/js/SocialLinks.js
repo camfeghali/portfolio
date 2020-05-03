@@ -48,3 +48,18 @@ export function Heading (props) {
         </div>
     )
 }
+
+export function BlogPost (props) {
+    const style = {
+        margin: '1.5em 0 0 0',
+        color: 'rgb(208,147,83)'
+    }
+    return(
+        <div style="margin: 1.5em 1em 1em 1em">
+        <div>
+            <a href={props.link}>{props.title}</a>
+        </div>
+        <hr className="accordion-underline"/>
+    </div>
+    )
+}
