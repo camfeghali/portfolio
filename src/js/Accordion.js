@@ -87,7 +87,8 @@ class AccordionSection extends MunkeyReact.Component {
             state
         } = this;
 
-        const isHovered = state.isHovered ? "rgb(169,169,169)" : "rgb(119,136,153)"
+
+        const isHovered = state.isHovered ? "rgb(169,169,169)" : "color: rgb(6, 28, 50)"
         
         return (
             <div style="margin: 1.5em 1em 1em 1em">

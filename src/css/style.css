@@ -2,10 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,500;1,400&display=swap');
 body {
-  background-color: rgb(247, 245, 245);
-  color: rgb(119,136,153);
+  background-color: rgb(255, 255, 255);
+  /* background-image: url("../img/background-image.jpg"), linear-gradient(-90deg, red, yellow); */
+  /* color: rgb(119,136,153); */
+  color: rgb(6, 28, 50);
   width: 100vw;
-  margin:0px;
   overflow: hidden;
   height: 100%; 
   max-height: 100%; 
@@ -75,6 +76,7 @@ a.munkey-react-link:hover {
 .munkey-logo {
   width: 75%;
   height: auto;
+  margin-bottom: 2em;
 }
 
 .css-style {

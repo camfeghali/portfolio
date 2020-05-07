@@ -52,14 +52,14 @@ class AncestorComponent extends MunkeyReact.Component {
 function Content (props) {
   return(
     <div className="content-column">
-      <h2>Thanks for checking out my profile!</h2>
+      <h2 style="margin-bottom: 2em;">Thanks for checking out my profile!</h2>
       <img src={mexicoCamille} className="munkey-logo"></img>
       <SocialLinks />
       <h2 style="color:rgba(60,164,157,1)"> Software Engineer @ <a className="honeyco-link">HoneyCO</a> </h2>
       <h2 className="css-style">This page is built with a <a className="munkey-react-link">ReactJS clone</a> I made</h2>
       <hr/>
       <FavoriteTech />
-      <hr/>
+      <hr style="margin-bottom: 3em;"/>
       <Heading title="Professional Projects"/>
       <Accordion>
         <AccordionElement label="Load Shedding Agent 2.0" content={lsaDescription}/>
