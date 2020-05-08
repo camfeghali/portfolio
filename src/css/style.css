@@ -18,7 +18,7 @@ body {
   top: auto;
   bottom: 0;
   margin: 4em 0 0 0;
-  height: 150px; /* Height of bottom frame div */
+  height: 200px; /* Height of bottom frame div */
   overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
@@ -117,4 +117,47 @@ p {
 
 li {
   list-style-type: none;
+}
+
+@media (min-width: 1200px) { 
+
+  .ancestor-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    position: fixed; 
+    top: 1px;
+    margin-left:auto;
+    margin-right: auto;
+    bottom: 1px;
+    overflow: auto; 
+  }
+
+  .social-media-links{
+    font-size: 24px;
+  }
+
+  .favorite-tech {
+    color: 'rgb(40, 38, 38)';
+    font-size: 22px;
+  }
+
+  .accordion-hovered-style {
+    color: rgb(169,169,169);
+    font-size: '28px';
+    cursor: 'pointer'; 
+  }
+
+  .accordion-not-hovered-style {
+    color:rgb(6, 28, 50);
+    font-size: '18px';
+  }
+
+  .project-description-wrapper p{
+    font-size: 16px;
+  }
+
+  .footer{
+    height: 150px; /* Height of bottom frame div */
+  }
+
 }
