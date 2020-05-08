@@ -42,7 +42,7 @@ export function Heading (props) {
     }
     return(
         <div style={style}>
-            <h2>{props.title}</h2>
+            <h2 id={props.id}>{props.title}</h2>
             <hr className="heading-underline"/>
         </div>
     )
@@ -64,5 +64,16 @@ export function Footer () {
         <div className="footer">
             <h2>Made with &nbsp; <span style="color: red"> &hearts; </span> &nbsp; by me</h2> 
         </div>
+    )
+}
+
+export function NavBar () {
+    return (
+        <ul className="navbar sticky">
+            <li className="nav-link"><a className="nav-link-content" href="#about">About</a></li>
+            <li className="nav-link"><a className="nav-link-content" href="#professional-projects">Professional Projects</a></li>
+            <li className="nav-link"><a className="nav-link-content" href="#personal-projects">Personal Projects</a></li>
+            <li className="nav-link"><a className="nav-link-content" href="#blog">Blog</a></li>
+        </ul>
     )
 }
