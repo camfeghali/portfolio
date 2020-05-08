@@ -87,11 +87,12 @@ class AccordionSection extends MunkeyReact.Component {
             state
         } = this;
 
-        const isHovered = state.isHovered ? "rgb(169,169,169)" : "rgb(119,136,153)"
+
+        const isHovered = state.isHovered ? "accordion-hovered-style" : "accordion-not-hovered-style"
         
         return (
-            <div style="margin: 1.5em 1em 1em 1em">
-                <div onClick={() => {this.onClick()}} onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onBlur()} style={{color: isHovered, fontSize: '18px',cursor: 'pointer' }}>
+            <div style="margin: 2.25em 1em 1em 1em">
+                <div onClick={() => {this.onClick()}} onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onBlur()} className={isHovered} style={{cursor: "pointer"}}>
                     {label}
                 </div>
                 {isOpen && (

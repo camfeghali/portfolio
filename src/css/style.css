@@ -2,10 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,500;1,400&display=swap');
 body {
-  background-color: rgb(247, 245, 245);
-  color: rgb(119,136,153);
+  background-color: rgb(255, 255, 255);
+  /* background-image: url("../img/background-image.jpg"), linear-gradient(-90deg, red, yellow); */
+  /* color: rgb(119,136,153); */
+  color: rgb(6, 28, 50);
   width: 100vw;
-  margin:0px;
   overflow: hidden;
   height: 100%; 
   max-height: 100%; 
@@ -15,10 +16,10 @@ body {
 
 .footer{
   top: auto;
-  bottom: 0; 
-  height: 110px; /* Height of bottom frame div */
+  bottom: 0;
+  margin: 4em 0 0 0;
+  height: 200px; /* Height of bottom frame div */
   overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-  background: blue;
 }
 
 a {
@@ -75,11 +76,13 @@ a.munkey-react-link:hover {
 .munkey-logo {
   width: 75%;
   height: auto;
+  margin-bottom: 2em;
 }
 
 .css-style {
   color: rgba(190, 52, 107);
-  font-size: 24px
+  font-size: 24px;
+  margin-top: 1em;
 }
 
 .tech-row {
@@ -114,4 +117,47 @@ p {
 
 li {
   list-style-type: none;
+}
+
+@media (min-width: 1200px) { 
+
+  .ancestor-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    position: fixed; 
+    top: 1px;
+    margin-left:auto;
+    margin-right: auto;
+    bottom: 1px;
+    overflow: auto; 
+  }
+
+  .social-media-links{
+    font-size: 24px;
+  }
+
+  .favorite-tech {
+    color: 'rgb(40, 38, 38)';
+    font-size: 22px;
+  }
+
+  .accordion-hovered-style {
+    color: rgb(169,169,169);
+    font-size: '28px';
+    cursor: 'pointer'; 
+  }
+
+  .accordion-not-hovered-style {
+    color:rgb(6, 28, 50);
+    font-size: '18px';
+  }
+
+  .project-description-wrapper p{
+    font-size: 16px;
+  }
+
+  .footer{
+    height: 150px; /* Height of bottom frame div */
+  }
+
 }

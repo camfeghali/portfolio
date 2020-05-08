@@ -5,7 +5,7 @@ import { MunkeyReact } from "./dom";
 export function SocialLinks () {
     return(
         <div>
-            <p>
+            <p className="social-media-links">
                 <a href="https://github.com/camfeghali?tab=repositories">
                     Github &nbsp;
                 </a>
@@ -28,17 +28,16 @@ export function SocialLinks () {
 }
 
 export function FavoriteTech () {
-    const style = {color: 'rgb(40, 38, 38)'}
     return(
         <div>
-            <p style={style}>JavaScript | ReactJS | Ruby on Rails | Python | Django</p>
+            <p className="favorite-tech"> JavaScript | ReactJS | Ruby on Rails | Python | Django</p>
         </div>
     )
 }
 
 export function Heading (props) {
     const style = {
-        margin: '1.5em 0 0 0',
+        margin: '3em 0 0 0',
         color: 'rgb(208,147,83)'
     }
     return(
@@ -50,16 +49,20 @@ export function Heading (props) {
 }
 
 export function BlogPost (props) {
-    const style = {
-        margin: '1.5em 0 0 0',
-        color: 'rgb(208,147,83)'
-    }
     return(
-        <div style="margin: 1.5em 1em 1em 1em">
+        <div style="margin: 2.5em 1em 1em 1em">
         <div>
             <a href={props.link}>{props.title}</a>
         </div>
         <hr className="accordion-underline"/>
     </div>
+    )
+}
+
+export function Footer () {
+    return (
+        <div className="footer">
+            <h2>Made with &nbsp; <span style="color: red"> &hearts; </span> &nbsp; by me</h2> 
+        </div>
     )
 }

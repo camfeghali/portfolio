@@ -87,7 +87,7 @@ export const ketoMeDescription = (
         <p>
             <u>Repo</u>: <a href="https://github.com/camfeghali/synced-frontend"> <u>Frontend</u> </a> | <a href="https://github.com/camfeghali/synced-backend"> <u>Backend</u> </a><br/>
             KetoMe is a fullstack web application built with Ruby on Rails during my time at the Flatiron School. 
-            KetoMe integrates the Edamam API, and allows users to look for recipes,
+            KetoMe integrates the <a href="https://developer.edamam.com/">Edamam API</a>, and allows users to look for recipes,
             and keep track of their nutritional intake to monitor their performance as 
             it pertains to the keto diet, more on the diet <a href="https://www.healthline.com/nutrition/ketogenic-diet-101"><u>here</u>.</a>
         </p>
@@ -111,13 +111,13 @@ export const nodeBoilerplateDescription = (
 // *******************************************************************
 // *******************************************************************
 
-export const compiledJavaScript = (
+export const caravanDescription = (
     <div className="project-description-wrapper">
         <p>
         <u>Repo</u>: <a href="https://github.com/camfeghali/caravan-frontend"> <u>Frontend</u> </a> | <a href="https://github.com/camfeghali/caravan-backend"> <u>Backend</u> </a><br/>
             Another student project, Caravan is a fullstack web application built with Ruby on Rails and ReactJS. It is a E-commerce platform 
             that allows users to buy & sell second hand goods close to them. 
-            It integrates the Leaflet library and the Mapquest API to show users where items are being sold.
+            It integrates the <a href="https://react-leaflet.js.org/">Leaflet library</a>  and the <a href="https://developer.mapquest.com/documentation/leaflet-plugins/">Mapquest API</a> to show users where items are being sold.
         </p>
     </div>
 )
