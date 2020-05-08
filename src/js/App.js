@@ -59,7 +59,7 @@ function Content (props) {
       <h2 className="css-style">This page is built with a <a className="munkey-react-link">ReactJS clone</a> I made</h2>
       <hr/>
       <FavoriteTech />
-      <hr style="margin-bottom: 3em;"/>
+      <hr/>
       <Heading title="Professional Projects"/>
       <Accordion>
         <AccordionElement label="Load Shedding Agent 2.0" content={lsaDescription}/>

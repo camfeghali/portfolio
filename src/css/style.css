@@ -81,7 +81,8 @@ a.munkey-react-link:hover {
 
 .css-style {
   color: rgba(190, 52, 107);
-  font-size: 24px
+  font-size: 24px;
+  margin-top: 1em;
 }
 
 .tech-row {

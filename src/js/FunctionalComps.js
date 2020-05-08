@@ -38,7 +38,7 @@ export function FavoriteTech () {
 
 export function Heading (props) {
     const style = {
-        margin: '1.5em 0 0 0',
+        margin: '3em 0 0 0',
         color: 'rgb(208,147,83)'
     }
     return(
@@ -50,12 +50,8 @@ export function Heading (props) {
 }
 
 export function BlogPost (props) {
-    const style = {
-        margin: '1.5em 0 0 0',
-        color: 'rgb(208,147,83)'
-    }
     return(
-        <div style="margin: 1.5em 1em 1em 1em">
+        <div style="margin: 2.5em 1em 1em 1em">
         <div>
             <a href={props.link}>{props.title}</a>
         </div>
