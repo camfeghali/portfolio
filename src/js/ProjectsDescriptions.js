@@ -19,7 +19,7 @@ export const lsaDescription = (
             <u>Client</u>: <a href="http://www1.cuny.edu/sites/sustainable/"> CUNY Conserves.</a><br/>
             LSA 2.0 is a Python/Django application deployed on a Raspberry Pi to shed peak electricity load in government buildings. 
             The team established BACnet/IP communication to edit points on field controllers deployed in LaGuardia Community College.
-            We Developed the user interface to manage the agent’s settings and configuration as well as track of events.
+            We Developed the user interface to manage the agent’s settings and configuration as well as track events.
             One main challenge is CI/CD and standardizing the deployment process via Windows and Linux machines.
         </p>
     </div>
