@@ -32,15 +32,19 @@ class AncestorComponent extends MunkeyReact.Component {
     this.state = {
       title: "Hello World"
     }
+    this.handleOnScroll = this.handleOnScroll.bind(this)
   }
 
+  handleOnScroll () {
+    console.log("Helooo")
+  }
 
   render() {
     return(
       <div className="ancestor-wrapper">
         <div></div>
         <div className="content-wrapper">
-          <Content file="App.js"/>
+          <Content onClick={this.handleOnScroll} file="App.js"/>
         </div>
         <div></div>
       </div>
@@ -51,9 +55,9 @@ class AncestorComponent extends MunkeyReact.Component {
 
 function Content (props) {
   return(
-    <div className="content-column">
+    <div id="about" className="content-column">
       <NavBar />
-      <h2 id="about" style="margin-bottom: 2em; color:rgba(60,160,255,1);">Thanks for checking out my profile!</h2>
+      <h2  style="margin-bottom: 2em; color:rgba(60,160,255,1);">Thanks for checking out my profile!</h2>
       <img src={mexicoCamille} className="munkey-logo"></img>
       <SocialLinks />
       <h2 style="color:rgba(60,164,157,1)"> Software Engineer @ <a className="honeyco-link">HoneyCO</a> </h2>

@@ -84,7 +84,7 @@ a.munkey-react-link:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 5em;
+  margin-top: 3em;
 }
 
 .headline {
@@ -154,6 +154,18 @@ li {
     margin-right: auto;
     bottom: 1px;
     overflow: auto; 
+  }
+
+  .munkey-logo {
+    width: 50%;
+    height: auto;
+    margin-bottom: 2em;
+  }
+
+  .nav-link {
+    padding: 0 0.5em 0 0.5em;
+    font-size: 32px;
+    border-right: solid;
   }
 
   .social-media-links{

@@ -69,7 +69,7 @@ export function Footer () {
 
 export function NavBar () {
     return (
-        <ul className="navbar">
+        <ul className="navbar sticky">
             <li className="nav-link"><a className="nav-link-content" href="#about">About</a></li>
             <li className="nav-link"><a className="nav-link-content" href="#professional-projects">Professional Projects</a></li>
             <li className="nav-link"><a className="nav-link-content" href="#personal-projects">Personal Projects</a></li>
