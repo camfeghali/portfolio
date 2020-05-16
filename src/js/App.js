@@ -57,7 +57,7 @@ function Content (props) {
   return(
     <div id="about" className="content-column">
       <NavBar />
-      <h2  style="margin-bottom: 2em; color:rgba(60,160,255,1);">Thanks for checking out my profile!</h2>
+      <h2  style="margin-bottom: 2em; color:rgba(60,160,255,1);">Thanks for checking out my website!</h2>
       <img src={mexicoCamille} className="munkey-logo"></img>
       <SocialLinks />
       <h2 style="color:rgba(60,164,157,1)"> Software Engineer @ <a className="honeyco-link">HoneyCO</a> </h2>
