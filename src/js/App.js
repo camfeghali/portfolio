@@ -61,7 +61,7 @@ function Content(props) {
       <h2 style="margin-bottom: 2em; color:rgba(60,160,255,1);">Thanks for checking out my website!!</h2>
       <img src={mexicoCamille} className="munkey-logo"></img>
       <SocialLinks />
-      <h2 style="color:rgba(60,164,157,1)"> Software Engineer @ <a className="honeyco-link">HoneyCO</a> </h2>
+      <h2 style="color:rgba(60,164,157,1)"> Software Engineer </h2>
       <h2 className="css-style">This page is built with a <a className="munkey-react-link">ReactJS clone</a> I made</h2>
       <hr />
       <FavoriteTech />
